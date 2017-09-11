@@ -1,7 +1,7 @@
 package kali.commons.model;
 
 public class URL {
-	public static final String ACCOUNT="account";
+	public static final String ACCOUNT="/account";
 	public static final String CREATE="/create";
 	public static final String ACTIVE="/active";
 	public static final String UPDATE="/update";
@@ -15,6 +15,10 @@ public class URL {
 	public static final String FORGOT_PASSWORD="/forgotpassword";
 	public static final String FORGOT_ACCOUNT="/forgotaccount";
 	
+	
+	//views
+	public static final String view="/view";
+	public static final String firstView="/firstview";
 	//variables
 	public static final String TO_STRING_NOT_DEFINED="to string method not defined";
 }

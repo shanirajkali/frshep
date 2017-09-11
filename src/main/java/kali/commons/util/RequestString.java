@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class RequestString {
 	
 	public String getRequestBody(InputStream inputStream) throws Exception{
