@@ -5,9 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="Address.getDistrict", query="Select district From Address A where A.state=?"),
+@NamedQuery(name="Address.getTahsil", query="Select tahsil From Address A where A.district=?"),
+@NamedQuery(name="Address.getLocale",query="Select locale From Address A where A.tahsil=?"),
+@NamedQuery(name="Address.getLocaleByPin",query="Select locale From Address A where A.pin=?"),
+}
+)
 @Table(name="address")
 public class Address {
 	

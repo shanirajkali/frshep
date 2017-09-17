@@ -17,7 +17,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
     <mvc:annotation-driven />
  
-    <mvc:resources mapping="/resources/**" location="/resource/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
  
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
