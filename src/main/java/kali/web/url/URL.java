@@ -1,6 +1,12 @@
-package kali.commons.model;
+package kali.web.url;
 
 public class URL {
+	
+	public static final String address="/address";
+	public static final String district="/district";
+	public static final String tahsil="/tahsil";
+	public static final String locale="/locale";
+	
 	public static final String ACCOUNT="/account";
 	public static final String CREATE="/create";
 	public static final String ACTIVE="/active";

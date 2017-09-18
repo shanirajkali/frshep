@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kali.commons.model.URL;
+import kali.web.url.URL;
 
 @RestController
 @RequestMapping(URL.ACCOUNT)

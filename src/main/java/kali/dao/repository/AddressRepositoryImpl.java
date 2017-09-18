@@ -1,7 +1,6 @@
 package kali.dao.repository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 import org.hibernate.Query;
@@ -27,6 +26,22 @@ public class AddressRepositoryImpl implements AddressRepository{
 		Session current=session.getCurrentSession();
 		Query query=current.getNamedQuery("Address.getDistrict");
 		query.setString(0, state);
+		ArrayList<String> stateList=(ArrayList<String>) query.list();
+		return stateList;
+	}
+	
+	public ArrayList<String> getTahsil(String district) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("Address.getTahsil");
+		query.setString(0, district);
+		ArrayList<String> stateList=(ArrayList<String>) query.list();
+		return stateList;
+	}
+	
+	public ArrayList<String> getLocale(String locale) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("Address.getLocale");
+		query.setString(0, locale);
 		ArrayList<String> stateList=(ArrayList<String>) query.list();
 		return stateList;
 	}

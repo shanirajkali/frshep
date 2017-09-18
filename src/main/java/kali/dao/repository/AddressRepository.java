@@ -7,4 +7,7 @@ import kali.dao.entity.Address;
 public interface AddressRepository {
 	public void persist(Address address);
 	public ArrayList<String> getDistrict(String state);
+	public ArrayList<String> getTahsil(String district);
+	public ArrayList<String> getLocale(String tahsil);
+	
 }
