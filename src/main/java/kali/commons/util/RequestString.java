@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RequestString {
-	
 	public String getRequestBody(InputStream inputStream) throws Exception{
 		StringBuilder requestBody = new StringBuilder();
 

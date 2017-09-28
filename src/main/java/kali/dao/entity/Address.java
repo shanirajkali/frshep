@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @NamedQuery(name="Address.getTahsil", query="Select tahsil From Address A where A.district=?"),
 @NamedQuery(name="Address.getLocale",query="Select locale From Address A where A.tahsil=?"),
 @NamedQuery(name="Address.getLocaleByPin",query="Select locale From Address A where A.pin=?"),
+@NamedQuery(name="Address.getByAll", query="From Address A where A.locale=? and A.tahsil=?")
 }
 )
 @Table(name="address")

@@ -26,6 +26,7 @@ public class AddressRepositoryImpl implements AddressRepository{
 		Session current=session.getCurrentSession();
 		Query query=current.getNamedQuery("Address.getDistrict");
 		query.setString(0, state);
+		@SuppressWarnings("unchecked")
 		ArrayList<String> stateList=(ArrayList<String>) query.list();
 		return stateList;
 	}
@@ -34,6 +35,7 @@ public class AddressRepositoryImpl implements AddressRepository{
 		Session current=session.getCurrentSession();
 		Query query=current.getNamedQuery("Address.getTahsil");
 		query.setString(0, district);
+		@SuppressWarnings("unchecked")
 		ArrayList<String> stateList=(ArrayList<String>) query.list();
 		return stateList;
 	}
@@ -42,7 +44,17 @@ public class AddressRepositoryImpl implements AddressRepository{
 		Session current=session.getCurrentSession();
 		Query query=current.getNamedQuery("Address.getLocale");
 		query.setString(0, locale);
+		@SuppressWarnings("unchecked")
 		ArrayList<String> stateList=(ArrayList<String>) query.list();
 		return stateList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Address> getAddressByAll(Address a) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("Address.getByAll");
+		query.setString(0, a.getLocale());
+		query.setString(1, a.getTahsil());
+		return (ArrayList<Address>) query.list();
 	}
 }

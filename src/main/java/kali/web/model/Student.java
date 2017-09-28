@@ -6,8 +6,8 @@ public class Student {
 	public String getFirstName() {
 		return firstName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstString) {
+		this.firstName = firstString;
 	}
 	public String getLastName() {
 		return lastName;
@@ -15,4 +15,5 @@ public class Student {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 }

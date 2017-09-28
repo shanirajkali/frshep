@@ -1,6 +1,9 @@
 package kali.dao.entity;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,14 +12,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name="UserAccount.phoneNoExist", query="Select mobile From UserAccount UA where UA.mobile=?"),
+@NamedQuery(name="UserAccount.emailIDExist", query="Select email From UserAccount UA where UA.email=?"),
+@NamedQuery(name="UserAccount.password", query="Select password From UserAccount UA where UA.password=?"),
+@NamedQuery(name="UserAccount.selectAll", query="from UserAccount")
+}
+)
 @Table(name="user_account")
 public class UserAccount {
+	
+	public UserAccount(){
+		this.createTimeStamp = new Date();
+	}
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_id")
@@ -24,7 +40,7 @@ public class UserAccount {
 	@Column(name="user_email",nullable=false)
 	private String email;
 	@Column(name="user_mobile",nullable=false)
-	private int moblie;
+	private long mobile;
 	@Column(name="current_dp")
 	private String currentDp;
 	@Column(name="user_password",nullable=false)
@@ -53,7 +69,7 @@ public class UserAccount {
 		return createTimeStamp;
 	}
 	public void setCreateTimeStamp(Date createTimeStamp) {
-		this.createTimeStamp = createTimeStamp;
+		this.createTimeStamp = new Date();
 	}
 	public Date getUpdateTimeStamp() {
 		return updateTimeStamp;
@@ -64,8 +80,14 @@ public class UserAccount {
 	public Date getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
-		this.dob = dob;
+	public void setDob(String dob) {
+		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		
+		try {
+			this.dob = df.parse(dob);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	public int getId() {
 		return id;
@@ -79,11 +101,11 @@ public class UserAccount {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getMoblie() {
-		return moblie;
+	public long getMobile() {
+		return mobile;
 	}
-	public void setMoblie(int moblie) {
-		this.moblie = moblie;
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
 	}
 	public String getCurrentDp() {
 		return currentDp;
