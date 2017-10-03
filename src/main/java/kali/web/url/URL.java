@@ -35,5 +35,17 @@ public class URL {
 	//pictures
 	public static final String picture="/picture";
 	public static final String userDp="/userDp";
+	public static final String getAll="/getAll";
+	public static final String logout = "/logout";
 	
+	//tag
+	public static final String tag="/tag";
+	public static final String tagSuper="/tagSuper";
+	public static final String tagSub0="/tagSub0";
+	public static final String tagSub1="/tagSub1";
+	public static final String tagSub2="/tagSub2";
+	public static final String tagSub3="/tagSub3";
+	public static final String getAllByLike="/getAllByLike";
+	public static final String getPatternWise = "/getPatternWise";
+	public static final String getAllPatternWise ="/getAllPatternWise";
 }
