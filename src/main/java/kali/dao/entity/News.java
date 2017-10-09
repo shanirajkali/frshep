@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,29 +33,55 @@ public class News {
 	private int id;
 	@Column(name="news_heading")
 	private String heading;
-	@Column(name="news_description")
 	@Lob
+	@Column(name="news_description")
 	private String description;
 	@Column(name="news_post_time_stamp",nullable=false)
 	private Date postTimeStamp;
 	@Column(name="news_update_time_stamp",nullable=false)
 	private Date updateTimeStamp;
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private UserAccount userId;
 	@Column(name="address_id")
 	private int addressId;
 	@Column(name="news_original")
 	private long original;
 	@Column(name="news_view")
 	private long view;
-	public long getView() {
-		return view;
-	}
-
-	public void setView(long view) {
-		this.view = view;
-	}
+	@Column(name="news_genuine")
+	private long genuine;
+	@Column(name="news_like")
+	private long like;
+	@Column(name="news_share")
+	private long share;
+	
+	@OneToMany
+	@JoinTable(name="news_media_relation",
+				joinColumns=@JoinColumn(name="news_id"),
+				inverseJoinColumns=@JoinColumn(name="news_media_id"))
+	private Collection<NewsMedia> newsMedia;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private UserAccount userId;
+	
+	@OneToOne
+	@JoinTable(name="tag_super_id")
+	private TagSuper tagSuperId;
+	
+	@OneToOne
+	@JoinTable(name="tag_sub0_id")
+	private TagSub0 tagSub0Id;
+	
+	@OneToOne
+	@JoinTable(name="tag_sub1_id")
+	private TagSub1 tagSub1Id;
+	
+	@OneToOne
+	@JoinTable(name="tag_sub2_id")
+	private TagSub2 tagSub2Id;
+	
+	@OneToOne
+	@JoinTable(name="tag_sub3_id")
+	private TagSub3 tagSub3Id;
 
 	public int getId() {
 		return id;
@@ -98,14 +123,6 @@ public class News {
 		this.updateTimeStamp = updateTimeStamp;
 	}
 
-	public UserAccount getUserId() {
-		return userId;
-	}
-
-	public void setUserId(UserAccount userId) {
-		this.userId = userId;
-	}
-
 	public int getAddressId() {
 		return addressId;
 	}
@@ -120,6 +137,14 @@ public class News {
 
 	public void setOriginal(long original) {
 		this.original = original;
+	}
+
+	public long getView() {
+		return view;
+	}
+
+	public void setView(long view) {
+		this.view = view;
 	}
 
 	public long getGenuine() {
@@ -146,25 +171,61 @@ public class News {
 		this.share = share;
 	}
 
-	public Collection<TagSuper> getTags() {
-		return tags;
+	public Collection<NewsMedia> getNewsMedia() {
+		return newsMedia;
 	}
 
-	public void setTags(Collection<TagSuper> tags) {
-		this.tags = tags;
+	public void setNewsMedia(Collection<NewsMedia> newsMedia) {
+		this.newsMedia = newsMedia;
 	}
 
-	@Column(name="news_genuine")
-	private long genuine;
-	@Column(name="news_like")
-	private long like;
-	@Column(name="news_share")
-	private long share;
+	public UserAccount getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UserAccount userId) {
+		this.userId = userId;
+	}
+
+	public TagSuper getTagSuperId() {
+		return tagSuperId;
+	}
+
+	public void setTagSuperId(TagSuper tagSuperId) {
+		this.tagSuperId = tagSuperId;
+	}
+
+	public TagSub0 getTagSub0Id() {
+		return tagSub0Id;
+	}
+
+	public void setTagSub0Id(TagSub0 tagSub0Id) {
+		this.tagSub0Id = tagSub0Id;
+	}
+
+	public TagSub1 getTagSub1Id() {
+		return tagSub1Id;
+	}
+
+	public void setTagSub1Id(TagSub1 tagSub1Id) {
+		this.tagSub1Id = tagSub1Id;
+	}
+
+	public TagSub2 getTagSub2Id() {
+		return tagSub2Id;
+	}
+
+	public void setTagSub2Id(TagSub2 tagSub2Id) {
+		this.tagSub2Id = tagSub2Id;
+	}
+
+	public TagSub3 getTagSub3Id() {
+		return tagSub3Id;
+	}
+
+	public void setTagSub3Id(TagSub3 tagSub3Id) {
+		this.tagSub3Id = tagSub3Id;
+	}
 	
-	@OneToMany
-	@JoinTable(name="relation_news_tag",
-				joinColumns=@JoinColumn(name="news_id"),
-				inverseJoinColumns=@JoinColumn(name="tag_id"))
-	private Collection<TagSuper> tags;
 	
 }
