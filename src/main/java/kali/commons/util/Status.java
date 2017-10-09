@@ -34,10 +34,17 @@ public class Status {
 	public static String loginFirst ="{\"status\":Please login first}";
 
 	public static String logoutSuccessfull ="{\"status\":Logout Successfull}";
+
+	
 	
 	
 	//tag
 	public static final String superTagRegisterd="{\"status\":\"Super Tag SuccessFully Registerd\"}";
+	public static String tagRegestrationError="{\"status\":\"tag registration error\"}";
+	public static String tagSub0Registerd="{\"status\":\"tag sub 0 registerd\"}";
+	public static String tagSub1Registerd="{\"status\":\"tag sub 1 registerd\"}";
+	public static String tagSub2Registerd="{\"status\":\"tag sub 2 registerd\"}";
+	public static String tagSub3Registerd="{\"status\":\"tag sub 3 registerd\"}";
 	
 	
 	
