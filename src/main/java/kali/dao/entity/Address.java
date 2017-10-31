@@ -11,11 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name="Address.getDistrict", query="Select district From Address A where A.state=?"),
-@NamedQuery(name="Address.getTahsil", query="Select tahsil From Address A where A.district=?"),
-@NamedQuery(name="Address.getLocale",query="Select locale From Address A where A.tahsil=?"),
-@NamedQuery(name="Address.getLocaleByPin",query="Select locale From Address A where A.pin=?"),
-@NamedQuery(name="Address.getByAll", query="From Address A where A.locale=? and A.tahsil=?")
+	@NamedQuery(name="Address.getState", query="Select state From Address"),
+	@NamedQuery(name="Address.getDistrict", query="Select district From Address A where A.state=?"),
+	@NamedQuery(name="Address.getTahsil", query="Select tahsil From Address A where A.district=?"),
+	@NamedQuery(name="Address.getLocale",query="Select locale From Address A where A.tahsil=?"),
+	@NamedQuery(name="Address.getLocaleByPin",query="Select locale From Address A where A.pin=?"),
+	@NamedQuery(name="Address.getByAll", query="From Address A where A.locale=? and A.tahsil=?"),
+	@NamedQuery(name="Address.exist",query="select id From Address A where A.pin=? and A.state=? and A.district=? and A.tahsil=? and A.locale=?")
 }
 )
 @Table(name="address")
@@ -24,10 +26,15 @@ public class Address {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="address_id")
 	private int id;
+	@Column(name="locale",nullable=false)
 	private String locale;
+	@Column(name="pin",nullable=false)
 	private int pin;
+	@Column(name="state",nullable=false)
 	private String state;
+	@Column(name="tahsil",nullable=false)
 	private String tahsil;
+	@Column(name="district",nullable=false)
 	private String district;
 	public int getId() {
 		return id;

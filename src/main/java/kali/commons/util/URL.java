@@ -1,4 +1,4 @@
-package kali.web.url;
+package kali.commons.util;
 
 public class URL {
 	//universal
@@ -8,13 +8,17 @@ public class URL {
 	public static final String delete="/delete";
 	public static final String inactive="/inactive";
 	public static final String verify="/verify";
+	public static final String save="/save";
 	
+	//address
 	
 	public static final String address="/address";
+	public static final String getSate = "/getState";
 	public static final String district="/district";
 	public static final String tahsil="/tahsil";
 	public static final String locale="/locale";
 	
+	//account
 	public static final String account="/account";
 	public static final String create="/create";
 	public static final String login="/login";
@@ -48,4 +52,9 @@ public class URL {
 	public static final String getAllByLike="/getAllByLike";
 	public static final String getPatternWise = "/getPatternWise";
 	public static final String getAllPatternWise ="/getAllPatternWise";
+	
+	//newsMedia Controller
+	public static final String newsMedia="/newsMedia";
+	
+	
 }

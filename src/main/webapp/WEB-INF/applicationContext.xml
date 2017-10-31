@@ -31,13 +31,19 @@
  
     <mvc:resources mapping="/resources/**" location="/resources/" />
  
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:9001/frshep" />
-        <property name="username" value="root" />
-        <property name="password" value="8778" />
-    </bean>
+ 	<!-- load Property placeholder configurer class -->
+ 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ 		<property name="Location" value="resources/db.properties" />
+ 	</bean>
  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+      <property name="maxActive" value="${maxActive}" />
+      <property name="maxWait" value="${maxWait}" />
+    </bean>
     <!-- Session Factory Declaration -->
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -55,20 +61,19 @@
             </props>
         </property>
     </bean>
- 
     <tx:annotation-driven transaction-manager="transactionManager" />
- 
+    
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-    <bean id="multipartResolver"   
-class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>  
     
-      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/WEB-INF/views/" />
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/resources/view/jsp/" />
       <property name="suffix" value=".jsp" />
-   </bean>
+    </bean>
    
+    <bean id="jsckson" class="com.fasterxml.jackson.databind.ObjectMapper" />
 </beans>

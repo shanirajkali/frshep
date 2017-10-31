@@ -1,16 +1,28 @@
 package kali.web.controller;
 
+import java.sql.SQLException;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kali.commons.util.URL;
 
 @Controller
 @RequestMapping("")
 public class Views {
+	@Autowired
+	BasicDataSource bd;
 	
-	@RequestMapping(value="",method=RequestMethod.GET)
-	public String getFirstView(){
-		return "firstview";
+	@RequestMapping(value="")
+	public String getFirstView() throws SQLException {	
+		return "home";
 	}
-	
+	@RequestMapping("/home")
+	public String login(){
+		return "home";
+	}
 }

@@ -57,4 +57,31 @@ public class AddressRepositoryImpl implements AddressRepository{
 		query.setString(1, a.getTahsil());
 		return (ArrayList<Address>) query.list();
 	}
+
+	public boolean exist(Address address) {
+		
+		Query query=session.getCurrentSession().getNamedQuery("Address.exist");
+		query.setInteger(0, address.getPin());
+		query.setString(1, address.getState());
+		query.setString(2, address.getDistrict());
+		query.setString(3, address.getTahsil());
+		query.setString(4, address.getLocale());
+		query.setMaxResults(1);
+		@SuppressWarnings("unchecked")
+		ArrayList<Integer> res=(ArrayList<Integer>) query.list();
+		if(res.size()>0) return true;
+		return false;
+	}
+
+	public boolean save(Address a) {
+		try{
+		session.getCurrentSession().saveOrUpdate(a);}catch(Exception e){e.printStackTrace();return false;}
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getState() {
+		
+		return (ArrayList<String>) session.getCurrentSession().getNamedQuery("Address.getState").list();
+	}
 }

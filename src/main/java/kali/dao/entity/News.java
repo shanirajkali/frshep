@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Table(name="news")
 public class News {
 
-	News(){
+	public News(){
 		this.postTimeStamp=new Date();
 	}
 	
@@ -38,7 +38,7 @@ public class News {
 	private String description;
 	@Column(name="news_post_time_stamp",nullable=false)
 	private Date postTimeStamp;
-	@Column(name="news_update_time_stamp",nullable=false)
+	@Column(name="news_update_time_stamp")
 	private Date updateTimeStamp;
 	@Column(name="address_id")
 	private int addressId;
@@ -64,23 +64,23 @@ public class News {
 	private UserAccount userId;
 	
 	@OneToOne
-	@JoinTable(name="tag_super_id")
+	@JoinColumn(name="tag_super_id")
 	private TagSuper tagSuperId;
 	
 	@OneToOne
-	@JoinTable(name="tag_sub0_id")
+	@JoinColumn(name="tag_sub0_id")
 	private TagSub0 tagSub0Id;
 	
 	@OneToOne
-	@JoinTable(name="tag_sub1_id")
+	@JoinColumn(name="tag_sub1_id")
 	private TagSub1 tagSub1Id;
 	
 	@OneToOne
-	@JoinTable(name="tag_sub2_id")
+	@JoinColumn(name="tag_sub2_id")
 	private TagSub2 tagSub2Id;
 	
 	@OneToOne
-	@JoinTable(name="tag_sub3_id")
+	@JoinColumn(name="tag_sub3_id")
 	private TagSub3 tagSub3Id;
 
 	public int getId() {
@@ -226,6 +226,4 @@ public class News {
 	public void setTagSub3Id(TagSub3 tagSub3Id) {
 		this.tagSub3Id = tagSub3Id;
 	}
-	
-	
 }
