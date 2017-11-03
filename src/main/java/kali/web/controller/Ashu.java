@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kali.dao.repository.TagRepository;
 
 @RestController
-@RequestMapping("/au")
+@RequestMapping("/ashu")
 public class Ashu {
 	
 	@Autowired
