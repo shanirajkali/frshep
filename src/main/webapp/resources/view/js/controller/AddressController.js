@@ -104,7 +104,7 @@ angular.module('AddressController', [])
         	$scope.address.tahsil=document.getElementById("tahsilList").value;
         	util.addListToSelect('localeList',$scope.getLocale(),"address.locale");
         	$scope.address.locale=document.getElementById("localeList").value;
-        //	setTimeout(function(){console.log("in wait"+mydat);console.log("scope data on waiting "+$scope.mydata);},1000);
+        	setTimeout(function(){console.log("in wait"+mydat);console.log("scope data on waiting "+$scope.mydata);},1000);
         }
         
     })
