@@ -21,6 +21,18 @@ public class Views {
 	public String getFirstView() throws SQLException {	
 		return "home";
 	}
+	
+	@RequestMapping(value="/addressView")
+	public String getAddressView() throws SQLException {	
+		return "addressRegistration";
+	}
+	
+	@RequestMapping(value="/loginView")
+	public String getLoginView() throws SQLException {	
+		return "login";
+	}
+	
+	
 	@RequestMapping("/home")
 	public String login(){
 		return "home";

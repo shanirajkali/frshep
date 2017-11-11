@@ -13,7 +13,7 @@ angular.module('AddressController', [])
         
         $scope.addressSubmit=function(){
         	var result;
-      	  	$.ajax({	url: "http://localhost:9000/frshep/address/save",
+      	  	$.ajax({	url: urlName.saveAddress,
       				type: 'post', async: false,  data:angular.toJson($scope.address),
       				success: function(content) {
       					result=angular.fromJson(content);
@@ -25,7 +25,7 @@ angular.module('AddressController', [])
     
         $scope.getDistrict=function(){
         	var result;
-      	  	$.ajax({	url: "http://localhost:9000/frshep/address/district",
+      	  	$.ajax({	url: urlName.getDistrict,
       				type: 'post', async: false,  data:angular.toJson($scope.address),
       				success: function(content) {
       					result=angular.fromJson(content);
@@ -36,7 +36,7 @@ angular.module('AddressController', [])
     
         $scope.getTahsil=function(){
         	var result;
-      	  	$.ajax({	url: "http://localhost:9000/frshep/address/tahsil",
+      	  	$.ajax({	url: urlName.getTahsil,
       				type: 'post', async: false,  data:angular.toJson($scope.address),
       				success: function(content) {
       					result=angular.fromJson(content);
@@ -48,7 +48,7 @@ angular.module('AddressController', [])
         
         $scope.getLocale=function(){
         	var result;
-      	  	$.ajax({	url: "http://localhost:9000/frshep/address/locale",
+      	  	$.ajax({	url: urlName.getLocale,
       				type: 'post', async: false,  data:angular.toJson($scope.address),
       				success: function(content) {
       					result=angular.fromJson(content);
@@ -70,7 +70,8 @@ angular.module('AddressController', [])
       
         $scope.getState=function(){
         	var result;
-        	  $.ajax({	url: "http://localhost:9000/frshep/address/getState",
+        	console.log("in getState()");
+        	  $.ajax({	url: urlName.getState,
         				type: 'post', async: false, data:angular.toJson($scope.address),
         				success: function(content) {
         					result=angular.fromJson(content);
@@ -104,7 +105,5 @@ angular.module('AddressController', [])
         	$scope.address.tahsil=document.getElementById("tahsilList").value;
         	util.addListToSelect('localeList',$scope.getLocale(),"address.locale");
         	$scope.address.locale=document.getElementById("localeList").value;
-        	setTimeout(function(){console.log("in wait"+mydat);console.log("scope data on waiting "+$scope.mydata);},1000);
-        }
-        
+        	 }        
     })

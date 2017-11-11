@@ -1,5 +1,4 @@
 <div id="address" ng-controller="AddressController" >
-
 	<div id="getAddress">
 		<select class="form-control" id="pinList"  ng-model="address.pin" ng-model="address.pin" ng-init=""></select>
 		<select class="form-control" id="stateList" ng-model="address.state" ng-init="setStateToSelect()" ng-change="setDistrictToSelect()">
@@ -19,5 +18,5 @@
     	PIN:	<input class="form-control" type="number" ng-model="address.pin"><br>
     	<button class="form-control" ng-click="addressSubmit()">Submit</button>
 	</div>
-	<div ></div>
+	<div></div>
 </div>

@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kali.commons.util.RequestString;
 import kali.commons.util.Status;
 import kali.commons.util.URL;
-import kali.commons.util.Validators;
 import kali.dao.entity.UserAccount;
 import kali.dao.repository.AddressRepository;
 import kali.dao.repository.UserRepository;
@@ -30,10 +29,10 @@ public class AccountController {
 	RequestString rs;
 	
 	@Autowired
-	AddressRepository addressRepository;
+	AddressRepository addressRepo;
 	
 	@Autowired
-	UserRepository userAccountRepository;
+	UserRepository userRepo;
 	
 	ObjectMapper mapper=new ObjectMapper();
 	
@@ -41,6 +40,7 @@ public class AccountController {
 	public String doCreate(HttpServletRequest request,HttpServletResponse response) throws IOException, Exception{
 		
 			String requestData=rs.getRequestBody(request.getInputStream());
+			System.out.println(requestData);
 			System.out.println("in Controller");
 			UserAccount ua=new UserAccount();
 			try{
@@ -52,12 +52,17 @@ public class AccountController {
 			}
 			
 			
-			if(userAccountRepository.emailIDExits(ua.getEmail()))
+			if(userRepo.emailIDExits(ua.getEmail()))
 				return Status.emailAlredyRegisterd;
-			if(userAccountRepository.phoneNoExits(ua.getMobile()))
+			if(userRepo.phoneNoExits(ua.getMobile()))
 				return Status.phoneNoAlredyRegisterd;
-			//ua.setAddress(addressRepository.getAddressByAll(ua.getAddress()).get(0));
-			userAccountRepository.create(ua);
+			if(userRepo.usernameExist(ua.getUsername()))
+				return Status.usernameAlredyRegisterd;
+			
+			ua.setAddress(addressRepo.getAddressByAll(ua.getAddress()));
+			
+			System.out.println(mapper.writeValueAsString(ua));
+			userRepo.create(ua);
 			return mapper.writeValueAsString(ua);
 			
 	}
@@ -77,21 +82,21 @@ public class AccountController {
 		}
 		if(s==null){
 			System.out.println("null");
-			if(!userAccountRepository.emailIDExits(ua.getEmail()))
+			if(!userRepo.emailIDExits(ua.getEmail()))
 				return Status.wrongEmailID;
-			if(!userAccountRepository.password(ua.getPassword()))
+			if(!userRepo.password(ua.getPassword()))
 				return Status.wrongPassword;
 			session.setAttribute("email", ua.getEmail());
 			session.setAttribute("password", ua.getPassword());
 			return Status.loginSuccessfull;
 		}
 		else if(s!=null){
-			if( (userAccountRepository.emailIDExits((String)session.getAttribute("email"))) == false 
+			if( (userRepo.emailIDExits((String)session.getAttribute("email"))) == false 
 					|| ( ((String)session.getAttribute("email")).equals(ua.getEmail()) ) == false){
 				session.invalidate();
 				return Status.wrongEmailID;
 				}
-			if(!userAccountRepository.password((String)session.getAttribute("password"))){
+			if(!userRepo.password((String)session.getAttribute("password"))){
 				session.invalidate();
 				return Status.wrongPassword;
 			}
@@ -114,7 +119,7 @@ public class AccountController {
 			response.setStatus(404);
 			response.setContentType("text/x-json;charset=UTF-8");
 			
-			return userAccountRepository.getAllUsers();
+			return userRepo.getAllUsers();
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

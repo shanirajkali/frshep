@@ -15,5 +15,6 @@ public interface UserRepository {
 	public UserAccount getDetails(String email, String password);
 	public int getIdByEmailAndPassword(String email, String password);
 	public String getAllUsers() throws JsonProcessingException;
+	public boolean usernameExist(String username);
 	
 }

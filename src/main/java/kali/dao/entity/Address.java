@@ -11,11 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Address.getState", query="Select state From Address"),
-	@NamedQuery(name="Address.getDistrict", query="Select district From Address A where A.state=?"),
-	@NamedQuery(name="Address.getTahsil", query="Select tahsil From Address A where A.district=?"),
-	@NamedQuery(name="Address.getLocale",query="Select locale From Address A where A.tahsil=?"),
-	@NamedQuery(name="Address.getLocaleByPin",query="Select locale From Address A where A.pin=?"),
+	@NamedQuery(name="Address.getState", query="Select distinct state From Address"),
+	@NamedQuery(name="Address.getDistrict", query="Select distinct district From Address A where A.state=?"),
+	@NamedQuery(name="Address.getTahsil", query="Select distinct tahsil From Address A where A.district=?"),
+	@NamedQuery(name="Address.getLocale",query="Select distinct locale From Address A where A.tahsil=?"),
+	@NamedQuery(name="Address.getLocaleByPin",query="Select distinct locale From Address A where A.pin=?"),
 	@NamedQuery(name="Address.getByAll", query="From Address A where A.locale=? and A.tahsil=?"),
 	@NamedQuery(name="Address.exist",query="select id From Address A where A.pin=? and A.state=? and A.district=? and A.tahsil=? and A.locale=?")
 }

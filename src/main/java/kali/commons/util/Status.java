@@ -19,6 +19,7 @@ public class Status {
 	public static final String wrongEmailID="{\"status\":\"Something wrong with Email\"}";
 	public static final String emailAlredyRegisterd="{\"status\":\"Email Address Alredy Registerd\"}";
 	public static final String phoneNoAlredyRegisterd="{\"status\":\"Phone Number Arredy Registerd\"}";
+	public static final String usernameAlredyRegisterd="{\"status\":\"username Arredy Registerd\"}";
 	public static final String signupUnsuccessfull="{\"status\":false}";
 	public static final String signupSuccessfull="{\"status\":true}";
 	public static final String loginSuccessfull="{\"status\":login Successfull}";

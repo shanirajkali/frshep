@@ -50,12 +50,17 @@ public class AddressRepositoryImpl implements AddressRepository{
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<Address> getAddressByAll(Address a) {
+	public Address getAddressByAll(Address a) {
 		Session current=session.getCurrentSession();
 		Query query=current.getNamedQuery("Address.getByAll");
 		query.setString(0, a.getLocale());
 		query.setString(1, a.getTahsil());
-		return (ArrayList<Address>) query.list();
+		query.setMaxResults(1);
+		ArrayList<Address> addressList=(ArrayList<Address>) query.list();
+		if(addressList.size()>0){
+			return addressList.get(0);
+		}
+		return null;
 	}
 
 	public boolean exist(Address address) {
@@ -81,7 +86,7 @@ public class AddressRepositoryImpl implements AddressRepository{
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getState() {
-		
-		return (ArrayList<String>) session.getCurrentSession().getNamedQuery("Address.getState").list();
+		Query query= session.getCurrentSession().getNamedQuery("Address.getState");
+		return (ArrayList<String>) query.list();
 	}
 }

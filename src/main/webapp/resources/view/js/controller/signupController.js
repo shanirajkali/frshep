@@ -1,5 +1,5 @@
 angular.module('signupController', [])
-    .controller('signupController', function($scope, $http ,$route, $rootScope, $location){
+    .controller('signupController', function($scope, $http ,$route, $rootScope, $location,$compile){
         var user={
         		email  : "",
         		username : "",
@@ -13,8 +13,7 @@ angular.module('signupController', [])
         			locale : "tihai"
         		},
         		street : "",
-        		dob : ""
-            
+        		dob : ""          
         };
     $scope.user=user;
     console.log(user);
@@ -22,7 +21,7 @@ angular.module('signupController', [])
     	console.log(user);
         $http({
             method: "POST",
-            url: "http://localhost:9000/frshep/account/create",
+            url: urlName.userSignup,
             data: user
         })
           .then(function(response) {
@@ -34,8 +33,21 @@ angular.module('signupController', [])
                   console.log(response.data);
                   }
           );
-  }
+    }
     
-    
-    
-    })
+    $scope.addAddress=function(){
+    	console.log("called");
+    	
+//
+//   	 var newEle = angular.element('<ng-include src="http://localhost:9003/frshep/addressView"></ng-include>');
+//   	    var target = document.getElementById('signupDiv');
+//   	    angular.element(target).append(newEle);
+//   	    console.log(newEle);
+    	
+    //	$("#signupDiv").append();
+//    	var element = document.getElementById("signupDiv");
+//    	var newDirective = angular.element('');
+//    	element.append(newDirective);
+    //	$compile(newDirective)($scope);
+    }
+})

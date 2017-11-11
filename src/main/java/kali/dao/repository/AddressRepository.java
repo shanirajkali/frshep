@@ -10,7 +10,7 @@ public interface AddressRepository {
 	public ArrayList<String> getDistrict(String state);
 	public ArrayList<String> getTahsil(String district);
 	public ArrayList<String> getLocale(String tahsil);
-	public ArrayList<Address> getAddressByAll(Address a);
+	public Address getAddressByAll(Address a);
 	public boolean save(Address a);
 	public ArrayList<String> getState();
 }

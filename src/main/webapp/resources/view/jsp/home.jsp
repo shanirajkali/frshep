@@ -13,15 +13,19 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/signupController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/AddressController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/util/util.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/util/url.js"></script>
 
 
 <base href="/">
 	<title> frshep | newsfeed </title>
 </head>
 <body>
-<!-- <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/navbar.jsp'"></div>
+<!-- <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/navbar.jsp'"></div> -->
 <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/signup.jsp'"></div>
-<br> -->
-<div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/addressRegistration.jsp'"></div>
+
+<div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/login.jsp'"></div>
+
+<br> 
+<!-- <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/addressRegistration.jsp'"></div> -->
 </body>
 </html>

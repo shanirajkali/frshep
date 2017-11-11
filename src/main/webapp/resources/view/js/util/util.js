@@ -12,7 +12,5 @@ var util={
     		option.value = list[i];
     		selectBox.add(option,i);
     	}
-    	
-    	
 	}	
 }

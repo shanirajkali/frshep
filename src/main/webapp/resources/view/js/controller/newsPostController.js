@@ -1,5 +1,5 @@
-angular.module('loginController', [])
-    .controller('loginController', function($scope ,$route, $rootScope, $location){
+angular.module('newsPostController', [])
+    .controller('newsPostController', function($scope ,$route, $rootScope, $location){
         var loginCred={
            email : "",
            password : ""

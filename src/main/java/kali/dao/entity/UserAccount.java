@@ -1,6 +1,5 @@
 package kali.dao.entity;
 
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,7 +28,8 @@ import javax.persistence.TemporalType;
 @NamedQuery(name="UserAccount.password", query="Select password From UserAccount UA where UA.password=?"),
 @NamedQuery(name="UserAccount.selectAll", query="from UserAccount"),
 @NamedQuery(name="UserAccount.getDetailsByEmailAndPassword", query="from UserAccount ua where ua.email=? and ua.password=?"),
-@NamedQuery(name="UserAccount.selectIdByEmailAndPassword", query="select id from UserAccount ua where ua.email=? and ua.password=?")
+@NamedQuery(name="UserAccount.selectIdByEmailAndPassword", query="select id from UserAccount ua where ua.email=? and ua.password=?"),
+@NamedQuery(name="UserAccount.usernameExist",query="select username from UserAccount ua where ua.username=?")
 }
 )
 @Table(name="user_account")

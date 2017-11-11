@@ -95,5 +95,15 @@ public class UserRepositoryImpl implements UserRepository {
 		else return true;
 	}
 
+	public boolean usernameExist(String username) {
+		Session current =session.getCurrentSession();
+		Query query = current.getNamedQuery("UserAccount.usernameExist");
+		query.setString(0, username);
+		if(query.list().isEmpty()){
+			return false;
+		}
+		return true;
+	}
+
 	
 }
