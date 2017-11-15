@@ -37,6 +37,14 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		return (ArrayList<TagSub3>) query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAllBySub2Id(int sub2Id) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub3.getAllBySub2Id");
+		query.setInteger(0, sub2Id);
+		return (ArrayList<String>) query.list();
+	}
+	
 	public boolean tagExist(String tagSub3Name) {
 		Session current=session.getCurrentSession();
 		Criteria criteria=current.createCriteria(TagSub3.class);
@@ -58,5 +66,7 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		if(list.size()>0) return list.get(0);
 		return null;
 	}
+
+	
 
 }

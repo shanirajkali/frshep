@@ -28,6 +28,15 @@ public class TagSuperRepositoryImpl implements TagSuperRepository {
 	public TagSuper get(int id) {
 		return (TagSuper) session.getCurrentSession().get(TagSuper.class, id);
 	}
+	
+	public long getId(String superTagName) {
+		System.out.println("TagSuperRepositoryImpl getId()-->");
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSuper.getId");
+		query.setString(0, superTagName);
+		query.setMaxResults(1);
+		return (Long) query.list().get(0);
+	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<TagSuper> getPatternWise(String like) {
@@ -37,6 +46,12 @@ public class TagSuperRepositoryImpl implements TagSuperRepository {
 		return (ArrayList<TagSuper>) query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAll(){
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSuper.getAll");
+		return (ArrayList<String>) query.list();
+	}
 	public boolean tagExist(String tagSuperName) {
 		Session current=session.getCurrentSession();
 		Criteria criteria=current.createCriteria(TagSuper.class);
@@ -57,5 +72,6 @@ public class TagSuperRepositoryImpl implements TagSuperRepository {
 		if(list.size()>0) return list.get(0);
 		return null;
 	}
+
 
 }

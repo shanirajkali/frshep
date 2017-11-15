@@ -37,6 +37,14 @@ public class TagSub2RepositoryImpl implements TagSub2Repository{
 		return (ArrayList<TagSub2>) query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAllBySub1Id(int sub1Id) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub2.getAllBySub1Id");
+		query.setInteger(0, sub1Id);
+		return (ArrayList<String>) query.list();
+	}
+	
 	public boolean tagExist(String tagSub2Name) {
 		Session current=session.getCurrentSession();
 		Criteria criteria=current.createCriteria(TagSub2.class);
@@ -58,5 +66,4 @@ public class TagSub2RepositoryImpl implements TagSub2Repository{
 		if(list.size()>0) return list.get(0);
 		return null;
 	}
-
 }

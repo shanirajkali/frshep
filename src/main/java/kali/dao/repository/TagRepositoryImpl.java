@@ -1,12 +1,10 @@
 package kali.dao.repository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import kali.dao.entity.TagSub1;
 import kali.dao.entity.TagSub2;
 import kali.dao.entity.TagSub3;
 import kali.dao.entity.TagSuper;
-import kali.dao.entity.final_calculation;
 
 @Transactional
 @Component
@@ -64,27 +61,5 @@ public class TagRepositoryImpl implements TagRepository{
 			return result;
 	}
 	
-	public String getRecord(String accesscode){
-		@SuppressWarnings("unchecked")
-		ArrayList<Integer> id=(ArrayList<Integer>)session
-		.getCurrentSession().getNamedQuery("users.getUid").setString(0, accesscode).list();
-		
-		Iterator<Integer> it=id.iterator();
-		
-		Session current=session.getCurrentSession();
-		
-		String res="";
-		
-		while(it.hasNext()){
-			@SuppressWarnings("unchecked")
-			ArrayList<Integer> match=(ArrayList<Integer>)session
-					.getCurrentSession()
-					.getNamedQuery("final_calculation.getMatch")
-					.setInteger(0, it.next()).setMaxResults(5).list();
-			res=res+"  "+match.toString();
-	
-		}		
-		return	id.toString()+"    "+res;
-	}
 
 }

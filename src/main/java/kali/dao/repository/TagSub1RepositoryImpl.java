@@ -59,4 +59,13 @@ public class TagSub1RepositoryImpl implements TagSub1Repository{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAllBySub0Id(long sub0Id) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub1.getAllBySub0Id");
+		query.setLong(0, sub0Id);
+		return (ArrayList<String>) query.list();
+		
+	}
+
 }

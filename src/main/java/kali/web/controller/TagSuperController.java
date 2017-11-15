@@ -1,5 +1,7 @@
 package kali.web.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
@@ -16,6 +19,7 @@ import kali.commons.util.Status;
 import kali.commons.util.URL;
 import kali.dao.entity.TagSuper;
 import kali.dao.repository.TagSuperRepository;
+import kali.dao.service.TagSuperService;
 
 @RestController
 @RequestMapping(URL.tag)
@@ -23,18 +27,19 @@ public class TagSuperController {
 
 	@Autowired
 	TagSuperRepository tagSuperRepo;
+	@Autowired TagSuperService tagSuperService;
 
 	@Autowired
 	RequestString requestString;
 	
-	ObjectMapper objectMapper=new ObjectMapper();
+	ObjectMapper jackson=new ObjectMapper();
 	
 	@RequestMapping(value=URL.tagSuper+URL.create, method=RequestMethod.POST)
 	public String doCreate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
 			requestBody = requestString.getRequestBody(request.getInputStream());
-			TagSuper tagSuper=objectMapper.readValue( requestBody, TagSuper.class);
+			TagSuper tagSuper=jackson.readValue( requestBody, TagSuper.class);
 			if(!tagSuperRepo.tagExist(tagSuper.getTagSuperName())){
 				tagSuperRepo.save(tagSuper);
 				return Status.superTagRegisterd;
@@ -53,8 +58,8 @@ public class TagSuperController {
 		String requestBody;
 		try {
 			requestBody = requestString.getRequestBody(request.getInputStream());
-			TagSuper tagSuper=objectMapper.readValue( requestBody, TagSuper.class);
-			return objectMapper.writeValueAsString(tagSuperRepo.getPatternWise(tagSuper.getTagSuperName()));
+			TagSuper tagSuper=jackson.readValue( requestBody, TagSuper.class);
+			return jackson.writeValueAsString(tagSuperRepo.getPatternWise(tagSuper.getTagSuperName()));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return Status.parsingError;
@@ -62,4 +67,16 @@ public class TagSuperController {
 		
 	}
 	
+	@RequestMapping(value=URL.tagSuper+URL.getAllSuper)
+	public String getAllSuper() throws JsonProcessingException{
+		return jackson.writeValueAsString(tagSuperRepo.getAll());
+	}
+	
+	@RequestMapping(value="superTagId")
+	public long getId(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, Exception{
+		String requestBody;
+		requestBody = requestString.getRequestBody(request.getInputStream());
+		TagSuper tagSuper=jackson.readValue( requestBody, TagSuper.class);
+		return tagSuperRepo.getId(tagSuper.getTagSuperName());
+	}
 }

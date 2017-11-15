@@ -11,6 +11,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/app.route.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/loginController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/signupController.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/newsPostController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/controller/AddressController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/util/util.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/view/js/util/url.js"></script>
@@ -24,6 +26,8 @@
 <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/signup.jsp'"></div>
 
 <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/login.jsp'"></div>
+</br>
+<div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/newsPost.jsp'"></div>
 
 <br> 
 <!-- <div ng-include="'${pageContext.request.contextPath}/resources/view/jsp/addressRegistration.jsp'"></div> -->

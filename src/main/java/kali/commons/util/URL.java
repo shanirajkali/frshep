@@ -52,9 +52,11 @@ public class URL {
 	public static final String getAllByLike="/getAllByLike";
 	public static final String getPatternWise = "/getPatternWise";
 	public static final String getAllPatternWise ="/getAllPatternWise";
+	public static final String getAllSuper = "/getAllSuper";
 	
 	//newsMedia Controller
 	public static final String newsMedia="/newsMedia";
+	
 	
 	
 }
