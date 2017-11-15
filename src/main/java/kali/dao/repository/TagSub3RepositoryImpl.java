@@ -29,6 +29,25 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		return (TagSub3) session.getCurrentSession().get(TagSub3.class, id);		
 	}
 
+	
+	public long getIdByName(String tagSub3Name) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub3.getIdByName");
+		query.setString(0, tagSub3Name);
+		query.setMaxResults(1);
+		return (Long) query.list().get(0);
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAllBySub2Id(long sub2Id) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub3.getAllByTagSub2Id");
+		query.setLong(0, sub2Id);
+		return (ArrayList<String>) query.list();
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<TagSub3> getPatternWise(String like) {
 		Session current=session.getCurrentSession();
@@ -37,6 +56,7 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		return (ArrayList<TagSub3>) query.list();
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getAllBySub2Id(int sub2Id) {
 		Session current=session.getCurrentSession();
@@ -44,6 +64,7 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		query.setInteger(0, sub2Id);
 		return (ArrayList<String>) query.list();
 	}
+	
 	
 	public boolean tagExist(String tagSub3Name) {
 		Session current=session.getCurrentSession();
@@ -56,6 +77,7 @@ public class TagSub3RepositoryImpl implements TagSub3Repository{
 		else return false;
 
 	}
+	
 	
 	public TagSub3 getTagSub3(String tagSub3Name) {
 		Session current=session.getCurrentSession();

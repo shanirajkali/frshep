@@ -29,6 +29,22 @@ public class TagSub2RepositoryImpl implements TagSub2Repository{
 		return (TagSub2) session.getCurrentSession().get(TagSub2.class, id);		
 	}
 
+	public long getIdByName(String tagSub2Name) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub2.getIdByName");
+		query.setString(0, tagSub2Name);
+		query.setMaxResults(1);
+		return (Long) query.list().get(0);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getAllBySub1Id(long sub1Id) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub2.getAllByTagSub1Id");
+		query.setLong(0, sub1Id);
+		return (ArrayList<String>) query.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<TagSub2> getPatternWise(String like) {
 		Session current=session.getCurrentSession();
@@ -66,4 +82,6 @@ public class TagSub2RepositoryImpl implements TagSub2Repository{
 		if(list.size()>0) return list.get(0);
 		return null;
 	}
+
+	
 }

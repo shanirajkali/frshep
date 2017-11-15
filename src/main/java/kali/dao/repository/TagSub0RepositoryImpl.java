@@ -35,6 +35,7 @@ public class TagSub0RepositoryImpl implements TagSub0Repository{
 		Query query=current.getNamedQuery("TagSub0.getIdByName");
 		query.setString(0, sub0Name);
 		query.setMaxResults(1);
+		System.out.println(query.list().get(0));
 		return (Long) query.list().get(0);
 	}
 	

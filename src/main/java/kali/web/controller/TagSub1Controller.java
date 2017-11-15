@@ -86,10 +86,11 @@ public class TagSub1Controller {
 	
 	@PostMapping("/getAllSub1OfSub0")
 	public String getAllOfSub0(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, Exception{
+		System.out.println("getAllOfSub0");
 		String requestBody;
 		requestBody = requestString.getRequestBody(request.getInputStream());
 		TagSub0 tagSub0=jackson.readValue( requestBody, TagSub0.class);
-		return jackson.writeValueAsString(tagSub1Service.equals(tagSub0.getTagSub0Name()));
+		return jackson.writeValueAsString(tagSub1Service.getAllSubTag1NameOfSubTag0Id(tagSub0.getTagSub0Name()));
 	}
 	
 }

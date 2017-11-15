@@ -17,8 +17,13 @@ public class TagSub1ServiceImpl implements TagSub1Service {
 	
 	
 	@Transactional
-	public ArrayList<String> getAllTagsOfSubTag0(String subTag0Name) {
-		long subTagId=tagSub0Service.getSub0IdByName(subTag0Name);
-		return tagSub1Repo.getAllBySub0Id(subTagId);
+	public ArrayList<String> getAllSubTag1NameOfSubTag0Id(String subTag0Name) {
+		long subTag0Id=tagSub0Service.getSub0IdByName(subTag0Name);
+		return tagSub1Repo.getAllBySub0Id(subTag0Id);
+	}
+
+
+	public long getIdByName(String sub1Name) {
+		return tagSub1Repo.getIdByName(sub1Name);
 	}
 }

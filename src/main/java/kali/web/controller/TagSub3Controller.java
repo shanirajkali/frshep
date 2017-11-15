@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import kali.dao.entity.TagSub2;
 import kali.dao.entity.TagSub3;
 import kali.dao.repository.TagSub2Repository;
 import kali.dao.repository.TagSub3Repository;
+import kali.dao.service.TagSub3Service;
 
 @RestController
 @RequestMapping(URL.tag)
@@ -28,6 +30,8 @@ public class TagSub3Controller {
 	
 	@Autowired
 	TagSub2Repository tagSub2Repository;
+	
+	@Autowired TagSub3Service tagSub3Service;
 	
 	@Autowired
 	RequestString requestString;
@@ -78,5 +82,18 @@ public class TagSub3Controller {
 		
 		}
 		
+	}
+	
+	@PostMapping("/getAllSub3BySub2Name")
+	public String getAllSub2bySub1Name(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		String requestBody;
+		try {
+			requestBody = requestString.getRequestBody(request.getInputStream());
+			TagSub2 tagSub2=objectMapper.readValue( requestBody, TagSub2.class);
+			return objectMapper.writeValueAsString(tagSub3Service.getAllBySub2Name(tagSub2.getTagSub2Name()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		return	Status.parsingError;
+		}
 	}
 }

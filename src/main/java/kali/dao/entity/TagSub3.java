@@ -16,7 +16,8 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="TagSub3.getPatternWise", query="select tagSub3Name from TagSub3 ts where ts.tagSub3Name like ?"),
-	@NamedQuery(name="TagSub3.getSub3", query="select tagSub3Name from TagSub3 ts where ts.tagSub2Id=?")
+	@NamedQuery(name="TagSub3.getIdByName", query="select id from TagSub3 ts3 where ts3.tagSub3Name=?"),
+	@NamedQuery(name="TagSub3.getAllBySubTag2Id", query="select tagSub3Name from TagSub3 ts where ts.tagSub2Id=?")
 })
 @Table(name="tag_sub_3")
 public class TagSub3 {

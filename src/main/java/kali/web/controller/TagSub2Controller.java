@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import kali.dao.entity.TagSub1;
 import kali.dao.entity.TagSub2;
 import kali.dao.repository.TagSub1Repository;
 import kali.dao.repository.TagSub2Repository;
+import kali.dao.service.TagSub2Service;
 
 @RestController
 @RequestMapping(URL.tag)
@@ -28,6 +30,8 @@ public class TagSub2Controller {
 	
 	@Autowired
 	TagSub1Repository tagSub1Repository;
+	
+	@Autowired TagSub2Service tagSub2Service;
 	
 	@Autowired
 	RequestString requestString;
@@ -76,7 +80,19 @@ public class TagSub2Controller {
 			e1.printStackTrace();
 		return	Status.parsingError;
 		
+		}	
+	}
+	
+	@PostMapping("/getAllSub2BySub1Name")
+	public String getAllSub2bySub1Name(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		String requestBody;
+		try {
+			requestBody = requestString.getRequestBody(request.getInputStream());
+			TagSub1 tagSub1=objectMapper.readValue( requestBody, TagSub1.class);
+			return objectMapper.writeValueAsString(tagSub2Service.getAllBySub1Name(tagSub1.getTagSub1Name()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		return	Status.parsingError;
 		}
-		
 	}
 }

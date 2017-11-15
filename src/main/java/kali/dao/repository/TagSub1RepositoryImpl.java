@@ -68,4 +68,13 @@ public class TagSub1RepositoryImpl implements TagSub1Repository{
 		
 	}
 
+
+	public long getIdByName(String sub1Name) {
+		Session current=session.getCurrentSession();
+		Query query=current.getNamedQuery("TagSub1.getIdBySub1Name");
+		query.setString(0, sub1Name);
+		return (Long) query.list().get(0);
+		
+	}
+
 }
