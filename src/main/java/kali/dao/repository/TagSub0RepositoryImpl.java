@@ -50,7 +50,7 @@ public class TagSub0RepositoryImpl implements TagSub0Repository{
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getAllSub0BySuperTagId(long superId) {
 		Session current=session.getCurrentSession();
-		Query query=current.getNamedQuery("TagSub0.getSub0");
+		Query query=current.getNamedQuery("TagSub0.getAllSub0");
 		query.setLong(0, superId);
 		return (ArrayList<String>) query.list();
 	}

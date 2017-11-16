@@ -18,14 +18,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kali.commons.util.FileManager;
 import kali.commons.util.Path;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.UserAccount;
 import kali.dao.entity.UserDp;
 import kali.dao.repository.UserRepository;
 import kali.dao.repository.UserDpRepository;
 
 @RestController
-@RequestMapping(value=URL.picture)
+@RequestMapping(value=UrlName.picture)
 public class UserDpController {
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class UserDpController {
 	@Autowired
 	ObjectMapper mapper;
 	
-	@RequestMapping(value=URL.userDp+URL.upload, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.userDp+UrlName.upload, method=RequestMethod.POST)
 	public String upload(@RequestParam CommonsMultipartFile file,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String email=(String)session.getAttribute("email");
 		String password=(String)session.getAttribute("password");
@@ -56,7 +56,7 @@ public class UserDpController {
 		return Status.loginFirst;
 	}
 	
-	@RequestMapping(value=URL.userDp+URL.getAll, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.userDp+UrlName.getAll, method=RequestMethod.POST)
 	public String getAllDp(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String email=(String)session.getAttribute("email");
 		String password=(String)session.getAttribute("password");

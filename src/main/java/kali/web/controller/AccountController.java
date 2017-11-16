@@ -16,13 +16,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.UserAccount;
 import kali.dao.repository.AddressRepository;
 import kali.dao.repository.UserRepository;
 
 @RestController
-@RequestMapping(URL.account)
+@RequestMapping(UrlName.account)
 public class AccountController {
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class AccountController {
 	
 	ObjectMapper mapper=new ObjectMapper();
 	
-	@RequestMapping(value=URL.create,method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.create,method=RequestMethod.POST)
 	public String doCreate(HttpServletRequest request,HttpServletResponse response) throws IOException, Exception{
 		
 			String requestData=rs.getRequestBody(request.getInputStream());
@@ -68,7 +68,7 @@ public class AccountController {
 	}
 	
 	@SuppressWarnings("unused")
-	@RequestMapping(value=URL.login,method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.login,method=RequestMethod.POST)
 	public String login(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException, Exception{
 		String s=(String)session.getAttribute("email");
 		String requestData=rs.getRequestBody(request.getInputStream());
@@ -107,13 +107,13 @@ public class AccountController {
 		
 	}
 	
-	@RequestMapping(value=URL.logout)
+	@RequestMapping(value=UrlName.logout)
 	public String logout(HttpSession session,HttpServletRequest request,HttpServletResponse response){
 		response.setStatus(200);
 		session.invalidate();
 		return Status.logoutSuccessfull;
 	}
-	@RequestMapping(value=URL.getAll)
+	@RequestMapping(value=UrlName.getAll)
 	public String getAllUsers(HttpServletResponse response){
 		try {
 			response.setStatus(404);

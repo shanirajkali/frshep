@@ -11,14 +11,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.Address;
 import kali.dao.repository.AddressRepository;
 import kali.dao.service.AddressService;
 import kali.web.rest.validation.AddressRest;
 
 @RestController
-@RequestMapping(URL.address)
+@RequestMapping(UrlName.address)
 public class AddressController {
 	
 	@Autowired AddressRepository addressRepository;
@@ -28,14 +28,14 @@ public class AddressController {
 	
 	
 	
-	@PostMapping(URL.save)
+	@PostMapping(UrlName.save)
 	public String create(HttpServletRequest request) throws Exception{
 		String requestBody=rs.getRequestBody(request.getInputStream());
 		Address address=mapper.readValue(requestBody,Address.class);
 		System.out.println("address controller");
 		return addressService.save(address);
 	}
-	@PostMapping(URL.getSate)
+	@PostMapping(UrlName.getSate)
 	public String getState(HttpServletRequest request){
 		try {
 			System.out.println(mapper.writeValueAsString(addressRepository.getState()));
@@ -45,7 +45,7 @@ public class AddressController {
 		}
 		return null;
 	}
-	@RequestMapping(value=URL.district)
+	@RequestMapping(value=UrlName.district)
 	public String getDistrict(HttpServletRequest request) throws Exception{
 		String requestBody=rs.getRequestBody(request.getInputStream());
 		AddressRest addressRest=mapper.readValue(requestBody,AddressRest.class);
@@ -55,7 +55,7 @@ public class AddressController {
 		return districts;
 	}
 	
-	@RequestMapping(value=URL.tahsil)
+	@RequestMapping(value=UrlName.tahsil)
 	public String getTahsil(HttpServletRequest request) throws Exception{
 		String requestBody=rs.getRequestBody(request.getInputStream());
 		AddressRest addressRest=mapper.readValue(requestBody,AddressRest.class);
@@ -64,7 +64,7 @@ public class AddressController {
 		return tahsils;
 	}
 	
-	@RequestMapping(value=URL.locale)
+	@RequestMapping(value=UrlName.locale)
 	public String getLocale(HttpServletRequest request) throws Exception{
 		String requestBody=rs.getRequestBody(request.getInputStream());
 		AddressRest addressRest=mapper.readValue(requestBody,AddressRest.class);

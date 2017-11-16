@@ -19,13 +19,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kali.commons.util.FileManager;
 import kali.commons.util.Path;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.NewsMedia;
 import kali.dao.service.NewsMediaService;
 import kali.dao.service.UserService;
 
 @RestController
-@RequestMapping(value=URL.newsMedia)
+@RequestMapping(value=UrlName.newsMedia)
 public class NewsMediaController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class NewsMediaController {
 	ObjectMapper jackson;
 	
 	
-	@RequestMapping(value=URL.upload, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.upload, method=RequestMethod.POST)
 	public String upload(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException{
 		if(!us.isCurrentUserLoggedIn(session)) return Status.loginFirst;
 		

@@ -16,25 +16,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.TagSuper;
 import kali.dao.repository.TagSuperRepository;
 import kali.dao.service.TagSuperService;
 
 @RestController
-@RequestMapping(URL.tag)
+@RequestMapping(UrlName.tag)
 public class TagSuperController {
 
-	@Autowired
-	TagSuperRepository tagSuperRepo;
+	@Autowired TagSuperRepository tagSuperRepo;
 	@Autowired TagSuperService tagSuperService;
 
-	@Autowired
-	RequestString requestString;
+	@Autowired RequestString requestString;
 	
 	ObjectMapper jackson=new ObjectMapper();
 	
-	@RequestMapping(value=URL.tagSuper+URL.create, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.super_+UrlName.create, method=RequestMethod.POST)
 	public String doCreate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
@@ -53,23 +51,17 @@ public class TagSuperController {
 		} 	
 	}
 	
-	@RequestMapping(value=URL.tagSuper+URL.getPatternWise, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.super_+UrlName.getPatternWise, method=RequestMethod.POST)
 	public String getAllPatternWise(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
 			requestBody = requestString.getRequestBody(request.getInputStream());
 			TagSuper tagSuper=jackson.readValue( requestBody, TagSuper.class);
 			return jackson.writeValueAsString(tagSuperRepo.getPatternWise(tagSuper.getTagSuperName()));
-		} catch (Exception e1) {
+		}catch (Exception e1) {
 			e1.printStackTrace();
 			return Status.parsingError;
 		}
-		
-	}
-	
-	@RequestMapping(value=URL.tagSuper+URL.getAllSuper)
-	public String getAllSuper() throws JsonProcessingException{
-		return jackson.writeValueAsString(tagSuperRepo.getAll());
 	}
 	
 	@RequestMapping(value="superTagId")
@@ -78,5 +70,10 @@ public class TagSuperController {
 		requestBody = requestString.getRequestBody(request.getInputStream());
 		TagSuper tagSuper=jackson.readValue( requestBody, TagSuper.class);
 		return tagSuperRepo.getId(tagSuper.getTagSuperName());
+	}
+	
+	@RequestMapping(value=UrlName.super_+UrlName.getAll)
+	public String getAllSuper() throws JsonProcessingException{
+		return jackson.writeValueAsString(tagSuperRepo.getAll());
 	}
 }

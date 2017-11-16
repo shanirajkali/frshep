@@ -1,0 +1,16 @@
+select{
+	border: 1px solid #777;
+	padding: .3rem .3rem .3rem .3rem;
+	border-redius:3px;
+	color : #565656;
+	
+	-webkit-appearance:none;
+	appearance:none;
+	
+	
+}
+select.relative{
+	position: relative;
+    left: 30px;
+    border: 3px solid #73AD21;
+}

@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.TagSub0;
 import kali.dao.entity.TagSuper;
 import kali.dao.repository.TagSub0Repository;
@@ -25,7 +24,7 @@ import kali.dao.repository.TagSuperRepository;
 import kali.dao.service.TagSub0Service;
 
 @RestController
-@RequestMapping(URL.tag)
+@RequestMapping(UrlName.tag)
 public class TagSub0Controller {
 	
 	@Autowired TagSub0Repository tagSub0Repository;
@@ -38,7 +37,7 @@ public class TagSub0Controller {
 	
 	ObjectMapper jackson=new ObjectMapper();
 
-	@RequestMapping(value=URL.tagSub0+URL.create, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.sub0+UrlName.create, method=RequestMethod.POST)
 	public String doCreate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
@@ -71,7 +70,7 @@ public class TagSub0Controller {
 		
 	}
 	
-	@RequestMapping(value=URL.tagSub0+URL.getPatternWise, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.sub0+UrlName.getPatternWise, method=RequestMethod.POST)
 	public String getAllPatternWise(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
@@ -86,7 +85,7 @@ public class TagSub0Controller {
 		
 	}
 	
-	@PostMapping("/getAllTagsOfSuper")
+	@PostMapping(UrlName.sub0+UrlName.getAll)
 	public String getAllTagsOfSuper(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, Exception{
 		String requestBody;
 		requestBody = requestString.getRequestBody(request.getInputStream());

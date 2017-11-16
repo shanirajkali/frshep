@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.repository.TagRepository;
 
 @RestController
-@RequestMapping(URL.tag)
+@RequestMapping(UrlName.tag)
 public class TagController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class TagController {
 	
 	ObjectMapper objectMapper=new ObjectMapper();
 	
-	@RequestMapping(value=URL.getAllPatternWise, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.getAllPatternWise, method=RequestMethod.POST)
 	public String getAllPatternWise(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException, Exception{
 		
 		String  requestBody = requestString.getRequestBody(request.getInputStream());

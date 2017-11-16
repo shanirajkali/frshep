@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kali.commons.util.RequestString;
 import kali.commons.util.Status;
-import kali.commons.util.URL;
+import kali.commons.util.UrlName;
 import kali.dao.entity.TagSub1;
 import kali.dao.entity.TagSub2;
 import kali.dao.repository.TagSub1Repository;
@@ -22,7 +22,7 @@ import kali.dao.repository.TagSub2Repository;
 import kali.dao.service.TagSub2Service;
 
 @RestController
-@RequestMapping(URL.tag)
+@RequestMapping(UrlName.tag)
 public class TagSub2Controller {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class TagSub2Controller {
 	
 	ObjectMapper objectMapper=new ObjectMapper();
 
-	@RequestMapping(value=URL.tagSub2+URL.create, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.sub2+UrlName.create, method=RequestMethod.POST)
 	public String doCreate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		
 		String requestBody;
@@ -69,7 +69,7 @@ public class TagSub2Controller {
 		}
 	}
 	
-	@RequestMapping(value=URL.tagSub2+URL.getPatternWise, method=RequestMethod.POST)
+	@RequestMapping(value=UrlName.sub2+UrlName.getPatternWise, method=RequestMethod.POST)
 	public String getAllPatternWise(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
@@ -83,7 +83,7 @@ public class TagSub2Controller {
 		}	
 	}
 	
-	@PostMapping("/getAllSub2BySub1Name")
+	@PostMapping(UrlName.sub2+UrlName.getAll)
 	public String getAllSub2bySub1Name(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		String requestBody;
 		try {
